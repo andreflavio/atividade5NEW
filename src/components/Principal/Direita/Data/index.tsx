@@ -1,18 +1,37 @@
+/*
+
 import React from "react";
-import styled, { useTheme } from "styled-components"; // Importe useTheme para acessar o tema
+import styled from "styled-components"; // Importe useTheme para acessar o tema
 
 interface DataProps {
   data: string;
 }
 
 const DataText = styled.div`
-  color: ${(props) => props.theme.data}; /* Use a cor de data do tema */
+  color: ${({theme}) => theme.data};
 `;
 
 const Data: React.FC<DataProps> = ({ data }) => {
-  const theme = useTheme(); // Use useTheme para acessar o tema
+  return <DataText>{data}</DataText>;
+};
 
-  return <DataText theme={theme}>{data}</DataText>;
+export default Data;
+*/
+
+import React from "react";
+import styled from "styled-components"; // Importe useTheme para acessar o tema
+
+interface DataProps {
+  data: string;
+  theme: any; // Adicione a propriedade theme ao tipo de props
+}
+
+const DataText = styled.div`
+  color: ${({ theme }) => theme.data}; /* Use a cor de data do tema */
+`;
+
+const Data: React.FC<DataProps> = ({ data, theme }) => {
+  return <DataText theme={theme}>{data}</DataText>; // Passe o tema para o componente estilizado
 };
 
 export default Data;
